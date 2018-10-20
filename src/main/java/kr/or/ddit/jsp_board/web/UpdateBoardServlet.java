@@ -45,7 +45,8 @@ public class UpdateBoardServlet extends HttpServlet {
 		System.out.println("userId는 "+ userId);
 		
 		Jsp_boardVo boardVo = new Jsp_boardVo();
-		boardVo.setBoard_id(Integer.parseInt(board_id));
+		if(!board_id.equals(""))
+			boardVo.setBoard_id(Integer.parseInt(board_id));
 		boardVo.setBoard_subject(board_subject);
 		boardVo.setBoard_avail(Integer.parseInt(board_avail));
 		boardVo.setBoard_userid(userId);

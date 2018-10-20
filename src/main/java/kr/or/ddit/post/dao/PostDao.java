@@ -53,10 +53,10 @@ public class PostDao implements PostDaoInf {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 		
-		List<PostVo> boardList = session.selectList("post.selectAllPost");
+		List<PostVo> postList = session.selectList("post.selectAllPost");
 		session.close();
 		
-		return boardList;
+		return postList;
 		
 	}
 
@@ -65,10 +65,10 @@ public class PostDao implements PostDaoInf {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 		
-		List<PostVo> boardList = session.selectList("post.selectPostPageList", pageVo);
+		List<PostVo> postList = session.selectList("post.selectPostPageList", pageVo);
 		session.close();
 		
-		return boardList;
+		return postList;
 	}
 
 	@Override
@@ -76,10 +76,10 @@ public class PostDao implements PostDaoInf {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 		
-		int boardCnt = session.selectOne("post. getPostCnt");
+		int postCnt = session.selectOne("post.getPostCnt");
 		session.close();
 		
-		return boardCnt;
+		return postCnt;
 	}
 
 	

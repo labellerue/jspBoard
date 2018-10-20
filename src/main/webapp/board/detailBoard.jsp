@@ -14,7 +14,7 @@
 		$(".boardClick").on("click", function() {
 
 			var board = this.parentElement.parentElement;
-			var board_id = board.children[0].innerText;
+			var board_id = board.children[0].firstChild.value;
 			var board_subject = board.children[1].firstChild.value;
 			var board_avail = board.children[2].firstChild.value;
 
@@ -56,8 +56,8 @@
 								
 								<!-- forEach -->
 								<c:forEach items="${boardList }" var="board" varStatus="status">
-								<tr class="boardUpdateInfo" >
-									<td>${status.index + 1 }</td>
+								<tr >
+									<td><input type="hidden" value="${board.board_id }"/>${status.index + 1 }</td>
 									<td><input type="text" class="form-control subject" value="${board.board_subject }" /> </td>
 									<td><select class="form-control">
 											<option value="0" ${board.board_avail == 0 ? "selected" : ""} >사용</option>
@@ -71,7 +71,7 @@
 								</c:forEach>
 								
 								<tr> 
-									<td>*</td>
+									<td><input type="hidden" />*</td>
 									<td><input type="text" class="form-control subject" placeholder="새로운 게시판 추가" /></td>
 									<td><select class="form-control">
 											<option value="0" selected>사용</option>
@@ -80,7 +80,7 @@
 									</td>
 									<td></td>
 									<td></td>
-									<td><input type="submit" value="추가" class="btn btn-default" class="boardClick"/></td>
+									<td><input type="submit" value="추가" class="btn btn-default boardClick" /></td>
 								</tr>
 							</table>
 						</div>
