@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="prod">
+
+	<!-- 전체 제품 수 -->
+	<select id="getProdCnt" resultType="int">
+		Select count(*) From prod
+	</select>
+
+	<!-- 제품정보 조회 -->
+	<select id="selectProdPageList" parameterType="pageVo" resultType="prodVo">
+		Select rnum, prod_id, prod_name, lprod_nm, prod_insdate
+		From  (
+			    Select rownum rnum, a.* 
+			    From (
+				        Select prod.*
+				        From   prod
+				        Order By prod_id) a) 
+				Left Outer Join lprod On (prod_lgu = lprod_gu) 
+		Where rnum Between #{page}*#{pageSize}-(#{pageSize}-1) And #{page}*#{pageSize}
+		Order by prod_id asc
+	</select>
+	
+	<!-- 제품 상세정보 조회 -->
+	<select id="selectProd" parameterType="string" resultType="prodVo">
+		Select prod_id, prod_name, lprod_nm, buyer_name, buyer_mail
+		From lprod Inner Join prod On (lprod_gu = prod_lgu )
+				   Inner Join buyer On (prod_buyer = buyer_id)
+		Where prod_id = #{prod_id}
+	</select>
+
+</mapper>

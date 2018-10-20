@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="jspuser">
+
+  <!-- 모든 회원 정보 조회 -->
+  <select id="selectUserAll" resultType="userVo">
+	Select * From jspuser
+  </select>
+  
+  <!-- 회원정보 조회 -->
+  <select id="selectUser" parameterType="String" resultType="userVo">
+  	Select * From jspuser Where userid = #{userId}
+  </select>
+  
+   <!-- 회원정보 조회2 -->
+  <select id="selectUserByVo" parameterType="userVo" resultType="userVo">
+  	Select * From jspuser Where userId=#{userId} 
+  	<!-- and name=#{name} and pass=#{pass} and
+  	addr1=#{addr1} and addr2=#{addr2} and zip=#{zip} and birth=#{birth} and 
+  	email=#{email} and tel=#{tel} -->
+  </select>
+  
+  <!-- 페이징 처리 -->
+  <select id="selectUserPageList" parameterType="pageVo" resultType="userVo">
+  	Select *
+	From ( 
+    	Select rownum rnum, a.* 
+    	From (
+	        Select jspuser.*
+	        From   jspuser
+	        Order by userId) a)
+	Where rnum Between #{page}*#{pageSize}-(#{pageSize}-1)
+    		   And #{page}*#{pageSize}
+  </select>
+  
+  <!-- 전체 회원 수 -->
+  <select id="getUserCnt" resultType="int">
+  	Select count(*) From jspuser
+  </select>
+  
+  <!-- 사용자 등록 -->
+  <insert id="insertUser" parameterType="userVo" >
+  	Insert Into jspuser (userId, name, pass, addr1, addr2, zip, birth, email, tel, profile)    
+	Values(#{userId}, #{name}, #{pass}, #{addr1}, #{addr2}, #{zip}, #{birth}, #{email}, #{tel}, #{profile})
+  </insert>
+  
+  <!-- 사용자 삭제 -->
+  <delete id="deleteUser" parameterType="string">
+  	Delete From jspuser Where userId=#{userId}
+  </delete>
+  
+  <!-- 사용자 수정 -->
+  <update id="updateUser" parameterType="userVo">
+  	Update jspuser 
+  	Set name=#{name}, pass=#{pass}, addr1=#{addr1}, addr2=#{addr2}, zip=#{zip}, 
+  		birth=#{birth}, email=#{email}, tel=#{tel}
+		<if test="profile != null">, profile=#{profile}</if>
+  	Where userId = #{userId}
+  </update>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+
+	<!-- 게시판 등록 -->
+	<insert id="insertBoard" parameterType="boardVo">
+		Insert Into jsp_board
+		(board_id, board_subject, board_avail, board_date, board_userid)
+		Values (boardNo.nextVal, #{board_subject}, #{board_avail}, sysdate, #{board_userid})
+	</insert>
+
+	<!-- 게시판 수정(사용여부 처리만 가능) -->
+	<update id="updateBoard" parameterType="boardVo">
+		Update	jsp_board
+		Set		board_subject = #{board_subject}
+		,		board_avail = #{board_avail}
+		Where	board_id = #{board_id}
+	</update>
+
+	<!-- 게시판 전체 조회 -->
+	<select id="selectAllBoard" resultType="boardVo">
+		Select * From jsp_board
+	</select>
+
+	<!-- 게시판 개수 -->
+	<select id="getBoardCnt" resultType="int">
+		Select Count(*) From jsp_board
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
