@@ -31,7 +31,7 @@ public class UpdateBoardServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("업데이트 서블릿 들어왔어요.");
+		
 		// post 한글 파라미터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
@@ -39,10 +39,6 @@ public class UpdateBoardServlet extends HttpServlet {
 		String board_subject = request.getParameter("board_subject");
 		String board_avail = request.getParameter("board_avail");
 		String userId = request.getParameter("userId");
-		System.out.println("board_id는 "+ board_id);
-		System.out.println("board_subject는 "+ board_subject);
-		System.out.println("board_avail는 "+ board_avail);
-		System.out.println("userId는 "+ userId);
 		
 		Jsp_boardVo boardVo = new Jsp_boardVo();
 		if(!board_id.equals(""))

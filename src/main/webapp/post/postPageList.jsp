@@ -58,12 +58,12 @@
 						<div class="text-center">
 							<ul class="pagination">
 								<li>
-									<a href="/postPageList?page=1&pageSize=10" aria-label="Previous">
+									<a href="/postPageList?page=1&pageSize=10&board_id=${board_id}" aria-label="Previous">
 										<span aria-hidden="true">&laquo;</span>
 									</a>
 								</li>
 								<li>
-									<a href="/postPageList?page=1&pageSize=10" aria-label="Previous">
+									<a href="/postPageList?page=1&pageSize=10&board_id=${board_id}" aria-label="Previous">
 										<span aria-hidden="true">&lsaquo;</span>
 									</a>
 								</li>
@@ -73,12 +73,12 @@
 								</li>
 								</c:forEach>
 								<li>
-									<a href="/postPageList?page=${postPageCnt}&pageSize=10" aria-label="Next"> 
+									<a href="/postPageList?page=${postPageCnt}&pageSize=10&board_id=${board_id}" aria-label="Next"> 
 										<span aria-hidden="true">&rsaquo;</span>
 									</a>
 								</li>
 								<li>
-									<a href="/postPageList?page=${postPageCnt }&pageSize=10" aria-label="Next"> 
+									<a href="/postPageList?page=${postPageCnt }&pageSize=10&board_id=${board_id}" aria-label="Next"> 
 										<span aria-hidden="true">&raquo;</span>
 									</a>
 								</li>

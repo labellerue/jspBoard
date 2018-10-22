@@ -27,6 +27,11 @@
  	height:412px;
  	border: 1px solid #ccc;
  }
+ #commDiv{
+ 	border: 1px solid black;
+ 	display: block;
+ 	width: 100%;
+ }
  </style>
 <%-- left --%>
 <%@ include file="/common/left.jsp"%>
@@ -52,9 +57,11 @@
 						<label class="conlabel">첨부파일 </label>
 					</div>
 					<div class="pull-left">
+					<!--
 						<c:forEach items="${files }" var="file"> 
 						<a href="#">${file.file_path }</a>
 						</c:forEach>
+						-->
 					</div>
 				</div>
 				<div class="btnBlock col-sm-8">
@@ -62,8 +69,14 @@
 					<input type="button" class="btn btn-default pull-right" id="savebutton" value="삭제" />
 					<input type="button" class="btn btn-default pull-right" id="savebutton" value="수정" />
 				</div>
-				<div>
+				<div id="commDiv">
 					<label class="conlabel">댓글 </label>
+					<!--
+					<c:forEach items="" var="">
+						<label>댓글 작성자</label>
+						<label>댓글 내용</label>
+					</c:forEach>
+					-->
 				</div>
 
 				</div>

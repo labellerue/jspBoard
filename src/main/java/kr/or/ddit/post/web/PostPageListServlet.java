@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.or.ddit.com.model.PageVo;
 import kr.or.ddit.jsp_board.model.Jsp_boardVo;
@@ -52,14 +53,13 @@ public class PostPageListServlet extends HttpServlet {
 	protected void postPageList(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
 		String board_id = request.getParameter("board_id");
-		
 		boardService = new Jsp_boardService();
 		postService = new PostService();
 		
 		// 해당 board_id의 게시판 명 가져오기
 		Jsp_boardVo boardVo = boardService.selectBoard(Integer.parseInt(board_id));
-		request.setAttribute("boardVo", boardVo);
 		
+		request.setAttribute("boardVo", boardVo);
 		
 		//해당 보드 아이디의 모든 게시글들을 가져오는 쿼리문
 		PageVo pageVo = new PageVo();
@@ -76,7 +76,9 @@ public class PostPageListServlet extends HttpServlet {
 		//request객체에 저장
 		request.setAttribute("postPageList", postPageList);
 		request.setAttribute("postPageCnt", pageCnt);
-		request.setAttribute("board_id", board_id);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("board_id", board_id);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/post/postPageList.jsp");
 		rd.forward(request, response);
@@ -101,7 +103,6 @@ public class PostPageListServlet extends HttpServlet {
 		
 		System.out.println("post_id 는" + post_id+"인거야");
 		PostVo detailPost = postService.selectPost(Integer.parseInt(post_id));
-		System.out.println("detailPost 는" + detailPost.getBoard_id());
 		
 		request.setAttribute("detailPost", detailPost);
 		

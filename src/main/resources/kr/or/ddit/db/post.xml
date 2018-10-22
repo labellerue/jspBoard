@@ -32,8 +32,14 @@
   
   <!-- 게시글 등록 -->
   <insert id="insertPost" parameterType="postVo" >
-  	Insert Into post (post_id, board_id, post_title, post_article, post_date, post_del <if test="post_pid != null">, post_pid</if>, post_groupid, post_userid )    
-	Values(#{postNo.nextVal}, #{board_id}, #{post_title}, #{post_article}, sysdate, 0 <if test="post_pid != null">, #{post_pid}</if>, #{post_groupid}, #{post_userid})
+  	Insert Into post (post_id, board_id, post_title, post_article, post_date, post_del, post_groupid, post_userid )    
+	Values(postNo.nextVal, #{board_id}, #{post_title}, #{post_article}, sysdate, 0, postNo.nextVal, #{post_userid})
+  </insert>
+  
+  <!-- 답글 등록 -->
+  <insert id="insertReply" parameterType="postVo" >
+  	Insert Into post (post_id, board_id, post_title, post_article, post_date, post_del, post_pid, post_groupid, post_userid )    
+	Values(#{postNo.nextVal}, #{board_id}, #{post_title}, #{post_article}, sysdate, 0, #{post_pid}, #{post_groupid}, #{post_userid})
   </insert>
 
   <!-- 게시글 수정 -->

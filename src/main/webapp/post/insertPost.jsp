@@ -24,6 +24,10 @@
  .conlabel {
  	padding-right: 10px;
  }
+ .smarteditor{
+ 	width: 766px; 
+ 	height:412px;
+ }
 </style>
 
 <!-- Favicon -->
@@ -72,7 +76,6 @@ function validation(){
 		oEditors.getById['smarteditor'].exec('FOCUS');
 		return false;
 	}
-
 	return true;
 }
 
@@ -86,13 +89,13 @@ function validation(){
 				<h2 class="sub-header">새 글 작성</h2>
 				<br/>
 				
-				<form action="/insertPost" method="post" >
+				<form action="/insertPost" method="post" id="frm" >
 				<div>
 					<label class="conlabel">제목 </label><input type="text" class="form-control title" name="post_title"/>
 				</div>
 				<!-- 작성 SmartEditor -->
 				<div>
-					<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" style="width:766px; height:412px;"></textarea> 
+					<textarea name="smarteditor" id="smarteditor" rows="10" cols="100" ></textarea> 
 				</div>
 				<div>
 					<div class="pull-left">
@@ -105,10 +108,11 @@ function validation(){
 					</div>
 				</div>
 				<div class="btnBlock col-sm-8">
-					<a href="/postPageList?page=1&pageSize=10&board_id=${detailPost.board_id }" class="btn btn-default pull-right" id="cancelbutton" >취소</a>
-					<input type="submit" class="btn btn-default pull-right" id="savebutton" value="저장" />
+					<a href="/postPageList?page=1&pageSize=10&board_id=${board_id }" class="btn btn-default pull-right" id="cancelbutton" >취소</a>
+					<input type="button" class="btn btn-default pull-right" id="savebutton" value="저장" />
 				</div>
 				<input type="hidden" id="userId" name="userId" value="${userVo.userId }"/>
+				<input type="hidden" id="board_id" name="board_id" value="${board_id }"/>
 				</form>
 
 				</div>
