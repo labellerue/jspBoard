@@ -23,6 +23,11 @@
 	<select id="selectAllBoard" resultType="boardVo">
 		Select * From jsp_board
 	</select>
+	
+	<!-- 게시판 아이디로 조회 -->
+	<select id="selectBoard" parameterType="int" resultType="boardVo">
+		Select * From jsp_board Where board_id = #{board_id}
+	</select>
 
 	<!-- 게시판 개수 -->
 	<select id="getBoardCnt" resultType="int">

@@ -16,7 +16,7 @@ public class Jsp_boardDaoTest {
 	}
 
 	@Test
-	public void updateBoard() {
+	public void updateBoardTest() {
 		/***Given***/
 		Jsp_boardVo boardVo = new Jsp_boardVo();
 		boardVo.setBoard_id(1);
@@ -31,7 +31,7 @@ public class Jsp_boardDaoTest {
 	}
 	
 	@Test
-	public void insertBoard(){
+	public void insertBoardTest(){
 		/***Given***/
 		Jsp_boardVo boardVo = new Jsp_boardVo();
 		boardVo.setBoard_subject("새 게시판");
@@ -44,9 +44,33 @@ public class Jsp_boardDaoTest {
 		/***Then***/
 		assertEquals(1, insertCnt);
 		
-		
-		
+	}
+	
+	@Test
+	public void selectBoardTest(){
+		/***Given***/
+		int board_id = 2;
+
+		/***When***/
+		Jsp_boardVo boardVo = boardDao.selectBoard(board_id);
+		String board_subject = boardVo.getBoard_subject();
+
+		/***Then***/
+		assertEquals("자유게시판", board_subject);
 		
 	}
+	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

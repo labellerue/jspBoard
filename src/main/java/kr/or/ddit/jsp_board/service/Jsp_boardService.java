@@ -23,6 +23,11 @@ public class Jsp_boardService implements Jsp_boardServiceInf {
 		return boardDao.selectAllBoard();
 	}
 
+	@Override
+	public Jsp_boardVo selectBoard(int board_id) {
+		return boardDao.selectBoard(board_id);
+	}
+
 
 }
 

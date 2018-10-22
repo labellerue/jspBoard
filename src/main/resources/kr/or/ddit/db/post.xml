@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+  <!-- 게시글 정보 조회 -->
+  <select id="selectPost" parameterType="int" resultType="postVo">
+  	Select * From post Where post_id = #{post_id}
+  </select>
+  
+  <!-- 페이징 처리 -->
+  <select id="selectPostPageList" parameterType="pageVo" resultType="postVo">
+  	Select *
+	From (
+	    Select rownum rnum, a.* 
+	    From (
+	        Select board_id, post_id, lpad(' ┗ ',(level-1)*4, ' ')|| post_title as post_title, post_article, post_pid, post_groupid, post_date, post_del, post_userid
+	        From post
+	        Where board_id = #{board_id}
+	        Start With post_pid Is null 
+	        Connect by prior post_id = post_pid
+	        Order Siblings By  post_groupid desc, post_id asc) a)
+	Where rnum Between #{page}*#{pageSize}-(#{pageSize}-1)
+    		   And #{page}*#{pageSize}
+  </select>
+  
+  <!-- 전체 게시글 수 -->
+  <select id="getPostCnt" resultType="int">
+  	Select count(*) From post
+  </select>
+  
+  <!-- 게시글 등록 -->
+  <insert id="insertPost" parameterType="postVo" >
+  	Insert Into post (post_id, board_id, post_title, post_article, post_date, post_del <if test="post_pid != null">, post_pid</if>, post_groupid, post_userid )    
+	Values(#{postNo.nextVal}, #{board_id}, #{post_title}, #{post_article}, sysdate, 0 <if test="post_pid != null">, #{post_pid}</if>, #{post_groupid}, #{post_userid})
+  </insert>
+
+  <!-- 게시글 수정 -->
+  <update id="updatePost" parameterType="postVo">
+  	Update post 
+  	<set>
+      <if test="post_title != null">post_title=#{post_title},</if>
+      <if test="post_article != null">post_article=#{post_article},</if>
+      <if test="post_del != null">post_del=#{post_del}</if>
+    </set>
+  	Where post_id = #{post_id}
+  </update>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

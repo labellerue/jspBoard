@@ -34,6 +34,16 @@ public interface Jsp_boardDaoInf {
 	*/
 	List<Jsp_boardVo> selectAllBoard();
 	
+	/**
+	* Method : selectBoard
+	* 작성자 : sohyoung
+	* 변경이력 :
+	* @param board_id
+	* @return
+	* Method 설명 : 게시판 아이디로 조회
+	*/
+	Jsp_boardVo selectBoard(int board_id);
+	
 }
 
 

@@ -1,6 +1,5 @@
 package kr.or.ddit.post.service;
 
-import java.util.List;
 import java.util.Map;
 
 import kr.or.ddit.com.model.PageVo;
@@ -9,10 +8,16 @@ import kr.or.ddit.post.model.PostVo;
 
 public interface PostServiceInf {
 
-	public List<PostVo> selectAllPost();
-
-	public PostVo selectPost(String post_id);
-
+	/**
+	* Method : selectPost
+	* 작성자 : sohyoung
+	* 변경이력 :
+	* @param post_id
+	* @return
+	* Method 설명 : 게시글 한개 조회
+	*/
+	public PostVo selectPost(int post_id);
+	
 	/**
 	* Method : selectUserPageList
 	* 작성자 : sohyoung
@@ -22,6 +27,15 @@ public interface PostServiceInf {
 	* Method 설명 : 게시글 페이징 조회
 	*/
 	public Map<String, Object> selectPostPageList(PageVo pageVo);
+	
+	/**
+	* Method : getPostCnt
+	* 작성자 : sohyoung
+	* 변경이력 :
+	* @return
+	* Method 설명 : 게시판 개수
+	*/
+	public int getPostCnt();
 	
 	/**
 	* Method : insertPost

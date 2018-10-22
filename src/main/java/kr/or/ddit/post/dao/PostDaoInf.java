@@ -6,6 +6,27 @@ import kr.or.ddit.com.model.PageVo;
 import kr.or.ddit.post.model.PostVo;
 
 public interface PostDaoInf {
+	
+	/**
+	* Method : selectPost
+	* 작성자 : sohyoung
+	* 변경이력 :
+	* @param post_id
+	* @return
+	* Method 설명 : 게시글 1개 조회
+	*/
+	PostVo selectPost(int post_id);
+	
+	/**
+	* Method : selectPostPageList
+	* 작성자 : sohyoung
+	* 변경이력 :
+	* @param pageVo
+	* @return
+	* Method 설명 : 게시판 페이징 조회
+	*/
+	List<PostVo> selectPostPageList(PageVo pageVo);
+	
 	/**
 	* Method : insertPost
 	* 작성자 : sohyoung
@@ -25,35 +46,6 @@ public interface PostDaoInf {
 	* Method 설명 : 게시판 수정
 	*/
 	int updatePost(PostVo postVo);
-	
-	/**
-	* Method : selectPost
-	* 작성자 : sohyoung
-	* 변경이력 :
-	* @param post_id
-	* @return
-	* Method 설명 : 게시글 1개 조회
-	*/
-	PostVo selectPost(String post_id);
-	
-	/**
-	* Method : selectAlltPost
-	* 작성자 : sohyoung
-	* 변경이력 :
-	* @return
-	* Method 설명 : 게시판 전체 조회
-	*/
-	List<PostVo> selectAllPost();
-	
-	/**
-	* Method : selectPostPageList
-	* 작성자 : sohyoung
-	* 변경이력 :
-	* @param pageVo
-	* @return
-	* Method 설명 : 게시판 페이징 조회
-	*/
-	List<PostVo> selectPostPageList(PageVo pageVo);
 	
 	/**
 	* Method : getPostCnt

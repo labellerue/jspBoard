@@ -3,22 +3,28 @@ package kr.or.ddit.post.model;
 import java.util.Date;
 
 public class PostVo {
-	private String post_id;
+	private int post_id;
 	private int board_id;
 	private String post_title;
 	private String post_article;
-	private String post_pid;
+	private int post_pid;
 	private Date post_date;
 	private int post_del;
+	private int post_groupid;
 	private String post_userid;
 	private int rnum;
 	
-	public PostVo() {
+	
+	public int getRnum() {
+		return rnum;
 	}
-	public String getPost_id() {
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	public int getPost_id() {
 		return post_id;
 	}
-	public void setPost_id(String post_id) {
+	public void setPost_id(int post_id) {
 		this.post_id = post_id;
 	}
 	public int getBoard_id() {
@@ -39,10 +45,10 @@ public class PostVo {
 	public void setPost_article(String post_article) {
 		this.post_article = post_article;
 	}
-	public String getPost_pid() {
+	public int getPost_pid() {
 		return post_pid;
 	}
-	public void setPost_pid(String post_pid) {
+	public void setPost_pid(int post_pid) {
 		this.post_pid = post_pid;
 	}
 	public Date getPost_date() {
@@ -57,19 +63,18 @@ public class PostVo {
 	public void setPost_del(int post_del) {
 		this.post_del = post_del;
 	}
+	public int getPost_groupid() {
+		return post_groupid;
+	}
+	public void setPost_groupid(int post_groupid) {
+		this.post_groupid = post_groupid;
+	}
 	public String getPost_userid() {
 		return post_userid;
 	}
 	public void setPost_userid(String post_userid) {
 		this.post_userid = post_userid;
 	}
-	public int getRnum() {
-		return rnum;
-	}
-	public void setRnum(int rnum) {
-		this.rnum = rnum;
-	}
-	
 	
 	
 

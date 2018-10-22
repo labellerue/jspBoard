@@ -13,6 +13,29 @@ public class PostDao implements PostDaoInf {
 	
 	private SqlSessionFactory factory;
 
+
+	@Override
+	public PostVo selectPost(int post_id) {
+		factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		PostVo postVo = session.selectOne("post.selectPost", post_id);
+		session.close();
+		
+		return postVo;
+	}
+	
+	@Override
+	public List<PostVo> selectPostPageList(PageVo pageVo) {
+		factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		List<PostVo> postPageList = session.selectList("post.selectPostPageList", pageVo);
+		session.close();
+		
+		return postPageList;
+	}
+
 	@Override
 	public int insertPost(PostVo postVo) {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();
@@ -37,40 +60,6 @@ public class PostDao implements PostDaoInf {
 		return updateCnt;
 	}
 	
-	@Override
-	public PostVo selectPost(String post_id) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		PostVo postVo = session.selectOne("post.selectPost");
-		session.close();
-		
-		return postVo;
-	}
-
-	@Override
-	public List<PostVo> selectAllPost() {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		List<PostVo> postList = session.selectList("post.selectAllPost");
-		session.close();
-		
-		return postList;
-		
-	}
-
-	@Override
-	public List<PostVo> selectPostPageList(PageVo pageVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		List<PostVo> postList = session.selectList("post.selectPostPageList", pageVo);
-		session.close();
-		
-		return postList;
-	}
-
 	@Override
 	public int getPostCnt() {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();

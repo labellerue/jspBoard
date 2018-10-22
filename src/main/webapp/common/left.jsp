@@ -5,7 +5,7 @@
 		<li class="active"><a href="/updateBoard">게시판 관리</a></li>
 		<c:forEach items="${boardList}" var="board">
 		<c:if test="${board.board_avail == 0 }">
-			<li class="active"><a href="/boardPageList?page=1&pageSize=10&board_id=${board.board_id}" >${board.board_subject}</a></li>
+			<li class="active"><a href="/postPageList?page=1&pageSize=10&board_id=${board.board_id}" >${board.board_subject}</a></li>
 		</c:if>
 		</c:forEach>
 	</ul>
