@@ -106,6 +106,7 @@ public class PostPageListServlet extends HttpServlet {
 		
 		request.setAttribute("detailPost", detailPost);
 		
+		
 		request.getRequestDispatcher("/post/detailPost.jsp").forward(request, response);
 		
 	}

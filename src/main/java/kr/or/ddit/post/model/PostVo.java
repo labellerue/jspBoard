@@ -75,6 +75,17 @@ public class PostVo {
 	public void setPost_userid(String post_userid) {
 		this.post_userid = post_userid;
 	}
+	@Override
+	public String toString() {
+		return "PostVo [post_id=" + post_id + ", board_id=" + board_id
+				+ ", post_title=" + post_title + ", post_article="
+				+ post_article + ", post_pid=" + post_pid + ", post_date="
+				+ post_date + ", post_del=" + post_del + ", post_groupid="
+				+ post_groupid + ", post_userid=" + post_userid + ", rnum="
+				+ rnum + "]";
+	}
+	
+	
 	
 	
 

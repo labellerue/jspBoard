@@ -2,14 +2,16 @@
     pageEncoding="UTF-8"%>
 <%-- header --%>
 <%@ include file="/common/header.jsp"%>
+<%-- left --%>
+<%@ include file="/common/left.jsp"%>
 <style>
-.btnBlock{
+.btnBlock {
 	width: 786px;
  }
- .btn{
+ .btn {
  	margin: 5px;	
  }
- .title{
+ .title {
   width: 700px;
   display: inline-block;
   position: relative;
@@ -22,20 +24,19 @@
  .conlabel {
  	padding-right: 10px;
  }
- #article{
+ #article {
  	width:766px; 
  	height:412px;
  	border: 1px solid #ccc;
  }
- #commDiv{
- 	border: 1px solid black;
+ #commDiv {
+ 	/* border: 1px solid black; */
  	display: block;
  	width: 100%;
+ 	float: left;
  }
  </style>
-<%-- left --%>
-<%@ include file="/common/left.jsp"%>
-
+ 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -57,11 +58,11 @@
 						<label class="conlabel">첨부파일 </label>
 					</div>
 					<div class="pull-left">
-					<!--
+					<%--
 						<c:forEach items="${files }" var="file"> 
 						<a href="#">${file.file_path }</a>
 						</c:forEach>
-						-->
+						 --%>
 					</div>
 				</div>
 				<div class="btnBlock col-sm-8">
@@ -70,13 +71,14 @@
 					<input type="button" class="btn btn-default pull-right" id="savebutton" value="수정" />
 				</div>
 				<div id="commDiv">
+				<hr/>
 					<label class="conlabel">댓글 </label>
-					<!--
+					<%--
 					<c:forEach items="" var="">
-						<label>댓글 작성자</label>
+						<label>댓글 작성자</label><br/>
 						<label>댓글 내용</label>
 					</c:forEach>
-					-->
+					 --%>
 				</div>
 
 				</div>
