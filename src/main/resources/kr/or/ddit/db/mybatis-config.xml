@@ -6,9 +6,11 @@
 	<properties resource="kr/or/ddit/db/db.properties" />
 		<typeAliases>
 			<typeAlias type="kr.or.ddit.user.model.UserVo" alias="userVo"/>
-			<typeAlias type="kr.or.ddit.com.model.PageVo" alias="pageVo"/>
+			<typeAlias type="kr.or.ddit.util.model.PageVo" alias="pageVo"/>
 			<typeAlias type="kr.or.ddit.jsp_board.model.Jsp_boardVo" alias="boardVo"/>
 			<typeAlias type="kr.or.ddit.post.model.PostVo" alias="postVo"/>
+			<typeAlias type="kr.or.ddit.comm.model.CommVo" alias="commVo"/>
+			<typeAlias type="kr.or.ddit.file_post.model.FilesVo" alias="filesVo"/>
 		</typeAliases>
 	
   <environments default="development">
@@ -33,5 +35,7 @@
     <mapper resource="kr/or/ddit/db/user.xml"/>
     <mapper resource="kr/or/ddit/db/jsp_board.xml"/>
     <mapper resource="kr/or/ddit/db/post.xml"/>
+    <mapper resource="kr/or/ddit/db/comm.xml"/>
+    <mapper resource="kr/or/ddit/db/files.xml"/>
   </mappers>
 </configuration>

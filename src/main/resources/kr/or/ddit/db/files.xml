@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="files">
+
+	<!-- 게시글 아이디로 파일들 조회 -->
+	<select id="selectFiles" parameterType="int" resultType="filesVo">
+		Select * From file_post Where post_id = #{post_id}
+	</select>
+
+	<!-- 첨부 파일 등록 -->
+	<insert id="insertFiles" parameterType="filesVo">
+		Insert Into file_post (file_id, file_path, post_id)
+		Values (fileNo.nextVal, #{file_path}, #{post_id})
+	</insert>
+
+	<!-- 첨부 파일 삭제 -->
+	<delete id="deleteFiles" parameterType="int">
+		Delete From file_post Where post_id = #{post_id}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

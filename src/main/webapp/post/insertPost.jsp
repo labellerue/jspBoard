@@ -4,31 +4,6 @@
 <%@ include file="/common/header.jsp"%>
 <%-- left --%>
 <%@ include file="/common/left.jsp"%>
-<style>
- .btnBlock{
-	width: 786px;
- }
- .btn{
- 	margin: 5px;	
- }
- .title{
-  width: 700px;
-  display: inline-block;
-  position: relative;
-  margin: 0;
-  padding: 0;
-  border-color: white white #ccc white;
-  border-radius: 0;
-  margin-bottom: 20px;
- }
- .conlabel {
- 	padding-right: 10px;
- }
- .smarteditor{
- 	width: 766px; 
- 	height:412px;
- }
-</style>
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="favicon.ico" />
@@ -65,7 +40,23 @@ $(document).ready(function() {
 				$("#frm").submit();
 			}
 		}
-	})
+		
+	});
+	
+	var i = 1;
+	//파일 추가하기 이벤트
+	$("#moreFiles").click(function(){
+		
+		if(i < 6){
+			$("#fileTagUl").append("<li><input type='file' name='files' /></li>");
+			i++;
+		}else{
+			alert("파일첨부는 최대 5개 까지 가능합니다.");
+		}
+		
+	});
+	
+	
 });
 
 // 필수값 Check
@@ -89,7 +80,12 @@ function validation(){
 				<h2 class="sub-header">새 글 작성</h2>
 				<br/>
 				
-				<form action="/insertPost" method="post" id="frm" >
+				<form action="/insertPost" method="post" id="frm" enctype="multipart/form-data" >
+					<input type="hidden" id="userId" name="userId" value="${userVo.userId }"/>
+					<input type="hidden" id="board_id" name="board_id" value="${board_id }"/>
+					<c:forEach items="${postIds}" var="ids">
+						<input type="hidden" id="${ids.key }" name="${ids.key }" value="${ids.value }"/>
+					</c:forEach>
 				<div>
 					<label class="conlabel">제목 </label><input type="text" class="form-control title" name="post_title"/>
 				</div>
@@ -101,18 +97,17 @@ function validation(){
 					<div class="pull-left">
 						<label class="conlabel">첨부파일 </label>
 					</div>
-					<div class="pull-left">
-						<c:forEach begin="0" end="4" var="i" step="1"> 
-						<input type="file" name="files"/>
-						</c:forEach>
+					<div class="pull-left" >
+					<ul id="fileTagUl">
+						<!-- 스크립트로 추가될 파일 input -->
+					</ul>
+						<a href="#" id="moreFiles" class="btn btn-default pull-right">╋</a>
 					</div>
 				</div>
 				<div class="btnBlock col-sm-8">
 					<a href="/postPageList?page=1&pageSize=10&board_id=${board_id }" class="btn btn-default pull-right" id="cancelbutton" >취소</a>
 					<input type="button" class="btn btn-default pull-right" id="savebutton" value="저장" />
 				</div>
-				<input type="hidden" id="userId" name="userId" value="${userVo.userId }"/>
-				<input type="hidden" id="board_id" name="board_id" value="${board_id }"/>
 				</form>
 
 				</div>
