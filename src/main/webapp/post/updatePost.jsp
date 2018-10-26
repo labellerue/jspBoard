@@ -79,7 +79,7 @@ function validation(){
 				<br/>
 				
 				<form action="/updatePost" method="post" id="frm" enctype="multipart/form-data" >
-				<input type="text" id="post_id" name="post_id" value="${postVo.post_id }"/>
+				<input type="hidden" id="post_id" name="post_id" value="${postVo.post_id }"/>
 				<div>
 					<label class="conlabel">제목 </label><input type="text" class="form-control title" name="post_title" value="${postVo.post_title }"/>
 				</div>
