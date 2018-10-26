@@ -34,7 +34,21 @@ public class PostDaoTest {
 		assertEquals(1, insertCnt);
 		
 	}
-	
+
+	@Test
+	public void updatePostTest() {
+		/*** Given ***/
+		PostVo postVo = new PostVo();
+		postVo.setPost_id(41);
+		postVo.setPost_title("업데이트 테스트");
+		postVo.setPost_article("업데이트 테스트 입니다.");
+
+		/***When***/
+		int updateCnt = postDao.updatePost(postVo);
+
+		/***Then***/
+		assertEquals(1, updateCnt);
+	}
 	
 
 }

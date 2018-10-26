@@ -5,9 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import kr.or.ddit.com.model.PageVo;
 import kr.or.ddit.db.SqlFactoryBuilder;
 import kr.or.ddit.post.model.PostVo;
+import kr.or.ddit.util.model.PageVo;
 
 public class PostDao implements PostDaoInf {
 	
@@ -47,7 +47,19 @@ public class PostDao implements PostDaoInf {
 		
 		return insertCnt;
 	}
-
+	
+	@Override
+	public int insertReply(PostVo postVo) {
+		factory = SqlFactoryBuilder.getSqlSessionFactory();
+		SqlSession session = factory.openSession();
+		
+		int insertCnt = session.insert("post.insertReply", postVo);
+		session.commit();
+		session.close();
+		
+		return insertCnt;
+	}
+	
 	@Override
 	public int updatePost(PostVo postVo) {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();
@@ -61,15 +73,18 @@ public class PostDao implements PostDaoInf {
 	}
 	
 	@Override
-	public int getPostCnt() {
+	public int getPostCnt(int board_id) {
 		factory = SqlFactoryBuilder.getSqlSessionFactory();
 		SqlSession session = factory.openSession();
 		
-		int postCnt = session.selectOne("post.getPostCnt");
+		int postCnt = session.selectOne("post.getPostCnt", board_id);
 		session.close();
 		
 		return postCnt;
 	}
+
+
+	
 
 	
 

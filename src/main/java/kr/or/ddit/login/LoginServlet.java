@@ -19,9 +19,6 @@ import kr.or.ddit.user.model.UserVo;
 import kr.or.ddit.user.service.UserService;
 import kr.or.ddit.user.service.UserServiceInf;
 
-/**
- * Servlet implementation class jsp_boardServlet
- */
 @WebServlet("/loginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,8 +42,7 @@ public class LoginServlet extends HttpServlet {
 					// 0으로 설정한 후 보내주기
 					response.addCookie(cookie);
 				}
-				System.out.println("cookie는 : " + cookie.getName() + " 값은 "
-						+ cookie.getValue());
+				System.out.println("cookie는 : " + cookie.getName() + " 값은 : " + cookie.getValue());
 			}
 			// 아이디 기억 사용할 경우
 		} else {

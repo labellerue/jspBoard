@@ -3,7 +3,6 @@ package kr.or.ddit.user.dao;
 import java.util.List;
 
 import kr.or.ddit.db.SqlFactoryBuilder;
-import kr.or.ddit.com.model.PageVo;
 import kr.or.ddit.user.model.UserVo;
 
 import org.apache.ibatis.session.SqlSession;
@@ -52,98 +51,7 @@ public class UserDao implements UserDaoInf{
 		return userVo;
 	}
 	
-	@Override
-	public UserVo selectUser(UserVo userVo){
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		UserVo userVoResult = session.selectOne("jspuser.selectUserByVo", userVo);
-		session.close();
-		
-		return userVoResult;
-	}
-		
-
-	@Override
-	public List<UserVo> selectUserPageList(PageVo pageVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		List<UserVo> userList = session.selectList("jspuser.selectUserPageList", pageVo);
-		session.close();
-		
-		return userList;
-	}
-
-	/**
-	* Method : getUserCnt
-	* 작성자 : sohyoung
-	* 변경이력 :
-	* @return
-	* Method 설명 : 사용자 전체 건수 조회
-	*/
-	@Override
-	public int getUserCnt() {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		int totalUserCnt = session.selectOne("jspuser.getUserCnt");
-		session.close();
-		
-		return totalUserCnt;
-	}
-
-	/**
-	* Method : insertUser
-	* 작성자 : sohyoung
-	* 변경이력 :
-	* @param userVo
-	* @return
-	* Method 설명 : 사용자 등록
-	*/
-	@Override
-	public int insertUser(UserVo userVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		int insertCnt = session.insert("jspuser.insertUser", userVo);
-		session.commit();
-		session.close();
-		
-		return insertCnt;
-	}
-
-	/**
-	* Method : insertUser
-	* 작성자 : sohyoung
-	* 변경이력 :
-	* @param userVo
-	* @return
-	* Method 설명 : 사용자 삭제
-	*/
-	@Override
-	public int deleteUser(String userId) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		int deleteCnt = session.delete("jspuser.deleteUser", userId);
-		session.commit();
-		session.close();
-		
-		return deleteCnt;
-	}
-
-	@Override
-	public int updateUser(UserVo userVo) {
-		factory = SqlFactoryBuilder.getSqlSessionFactory();
-		SqlSession session = factory.openSession();
-		
-		int updateCnt = session.update("jspuser.updateUser", userVo);
-		session.commit();
-		session.close();
-		
-		return updateCnt;
-	}
+	
 
 	
 	

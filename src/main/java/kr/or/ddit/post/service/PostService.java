@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import kr.or.ddit.com.model.PageVo;
 import kr.or.ddit.post.dao.PostDao;
 import kr.or.ddit.post.dao.PostDaoInf;
 import kr.or.ddit.post.model.PostVo;
+import kr.or.ddit.util.model.PageVo;
 
 public class PostService implements PostServiceInf{
 
@@ -33,7 +33,7 @@ public class PostService implements PostServiceInf{
 		List<PostVo> pageList = postDao.selectPostPageList(pageVo);
 		
 		//페이지 네비게이션을 위한 전체 유저 리스트 조회
-		int postCnt = postDao.getPostCnt();
+		int postCnt = postDao.getPostCnt(pageVo.getBoard_id());
 		
 		//결과를 담는 mapp 객체
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -47,7 +47,11 @@ public class PostService implements PostServiceInf{
 	public int insertPost(PostVo postVo) {
 		return postDao.insertPost(postVo);
 	}
-
+	
+	@Override
+	public int insertReply(PostVo postVo) {
+		return postDao.insertReply(postVo);
+	}
 
 	@Override
 	public int updatePost(PostVo postVo) {
@@ -56,9 +60,11 @@ public class PostService implements PostServiceInf{
 
 
 	@Override
-	public int getPostCnt() {
-		return postDao.getPostCnt();
+	public int getPostCnt(int board_id) {
+		return postDao.getPostCnt(board_id);
 	}
+
+	
 
 
 

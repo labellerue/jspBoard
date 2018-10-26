@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="comm">
+
+  <!-- 댓글 정보 조회 -->
+  <select id="selectComm" parameterType="int" resultType="commVo">
+  	Select * From comm Where post_id = #{post_id} Order By comm_date desc
+  </select>
+  
+  <!-- 댓글 등록 -->
+  <insert id="insertComm" parameterType="commVo" >
+  	Insert Into comm (comm_id, post_id, comm_note, comm_date, comm_del, comm_userid)    
+	Values(commNo.nextVal, #{post_id}, #{comm_note}, sysdate, 0, #{comm_userid})
+  </insert>
+  
+  <!-- 댓글 삭제로 수정 -->
+  <update id="updateComm" parameterType="int">
+  	Update comm 
+  	Set	   comm_del = 1
+  	Where  comm_id = #{comm_id}
+  </update>
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,31 +15,37 @@
 	From (
 	    Select rownum rnum, a.* 
 	    From (
-	        Select board_id, post_id, lpad(' ┗ ',(level-1)*4, ' ')|| post_title as post_title, post_article, post_pid, post_groupid, post_date, post_del, post_userid
+	        Select board_id, post_id, lpad('┗　', (level-1)*4, '　')|| post_title as post_title, post_article, post_pid, post_groupid, post_date, post_del, post_userid
 	        From post
 	        Where board_id = #{board_id}
 	        Start With post_pid Is null 
 	        Connect by prior post_id = post_pid
-	        Order Siblings By  post_groupid desc, post_id asc) a)
+	        Order Siblings By post_groupid desc, post_id asc) a)
 	Where rnum Between #{page}*#{pageSize}-(#{pageSize}-1)
     		   And #{page}*#{pageSize}
   </select>
   
   <!-- 전체 게시글 수 -->
-  <select id="getPostCnt" resultType="int">
-  	Select count(*) From post
+  <select id="getPostCnt" parameterType="int" resultType="int">
+  	Select count(*) From post Where board_id = #{board_id}
   </select>
   
   <!-- 게시글 등록 -->
   <insert id="insertPost" parameterType="postVo" >
+  <selectKey keyProperty="tofile_id" resultType="int" order="BEFORE">
+  	Select postNo.nextVal From Dual
+  </selectKey>
   	Insert Into post (post_id, board_id, post_title, post_article, post_date, post_del, post_groupid, post_userid )    
-	Values(postNo.nextVal, #{board_id}, #{post_title}, #{post_article}, sysdate, 0, postNo.nextVal, #{post_userid})
+	Values(#{tofile_id}, #{board_id}, #{post_title}, #{post_article}, sysdate, 0, postNo.nextVal, #{post_userid})
   </insert>
   
   <!-- 답글 등록 -->
   <insert id="insertReply" parameterType="postVo" >
+   <selectKey keyProperty="tofile_id" resultType="int" order="BEFORE">
+  	Select postNo.nextVal From Dual
+  </selectKey>
   	Insert Into post (post_id, board_id, post_title, post_article, post_date, post_del, post_pid, post_groupid, post_userid )    
-	Values(#{postNo.nextVal}, #{board_id}, #{post_title}, #{post_article}, sysdate, 0, #{post_pid}, #{post_groupid}, #{post_userid})
+	Values(#{tofile_id}, #{board_id}, #{post_title}, #{post_article}, sysdate, 0, #{post_pid}, #{post_groupid}, #{post_userid})
   </insert>
 
   <!-- 게시글 수정 -->
@@ -52,6 +58,11 @@
     </set>
   	Where post_id = #{post_id}
   </update>
+  
+  <!-- 현재 게시글 id 조회 -->
+  <select id="getCurrId" resultType="integer">
+  	Select postNo.currVal From dual
+  </select>
   
 </mapper>
 

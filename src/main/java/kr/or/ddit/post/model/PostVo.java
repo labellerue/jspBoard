@@ -13,8 +13,15 @@ public class PostVo {
 	private int post_groupid;
 	private String post_userid;
 	private int rnum;
+	private int tofile_id;
 	
 	
+	public int getTofile_id() {
+		return tofile_id;
+	}
+	public void setTofile_id(int tofile_id) {
+		this.tofile_id = tofile_id;
+	}
 	public int getRnum() {
 		return rnum;
 	}

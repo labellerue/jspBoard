@@ -2,8 +2,8 @@ package kr.or.ddit.post.dao;
 
 import java.util.List;
 
-import kr.or.ddit.com.model.PageVo;
 import kr.or.ddit.post.model.PostVo;
+import kr.or.ddit.util.model.PageVo;
 
 public interface PostDaoInf {
 	
@@ -35,7 +35,17 @@ public interface PostDaoInf {
 	* @return
 	* Method 설명 : 게시판 등록
 	*/
-	int insertPost(PostVo postVo);
+	 int insertPost(PostVo postVo);
+	
+	/**
+	 * Method : insertReply
+	 * 작성자 : sohyoung
+	 * 변경이력 :
+	 * @param postVo
+	 * @return
+	 * Method 설명 : 답글 등록
+	 */
+	 int insertReply(PostVo postVo);
 	
 	/**
 	* Method : updatePost
@@ -51,10 +61,11 @@ public interface PostDaoInf {
 	* Method : getPostCnt
 	* 작성자 : sohyoung
 	* 변경이력 :
-	* @return
-	* Method 설명 : 게시판 개수
+	* @param board_id
+	* @return 게시판 개수
+	* Method 설명 : 해당 board_id의 게시판 개수
 	*/
-	int getPostCnt();
+	int getPostCnt(int board_id);
 }
 
 

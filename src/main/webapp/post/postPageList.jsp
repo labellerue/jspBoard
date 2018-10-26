@@ -34,7 +34,7 @@
 						<h2 class="sub-header">${boardVo.board_subject }</h2>
 						<div class="table-responsive">
 						
-						<a class="btn btn-default pull-right" href="/post/insertPost.jsp?userId=${userVo.userId }">글쓰기</a>
+						<a class="btn btn-default pull-right" href="/post/insertPost.jsp">글쓰기</a>
 							<table class="table table-striped table-hover">
 								<tr>
 									<th>no.</th>
@@ -44,12 +44,22 @@
 								</tr>
 
 								<c:forEach items="${postPageList }" var="post">
-									<tr class="postClick">
-										<td><label class="post_id">${post.post_id }</label> ${post.rnum }</td>
-										<td>${post.post_title }</td>
-										<td>${post.post_userid }</td>
-										<td><fmt:formatDate value="${post.post_date }" pattern="yyyy/MM/dd" /></td>
-									</tr>
+								<c:choose>
+									<c:when test="${post.post_del == 0 }"> 
+										<tr class="postClick">
+											<td><label class="post_id">${post.post_id }</label> ${post.rnum }</td>
+											<td>${post.post_title }</td>
+											<td>${post.post_userid }</td>
+											<td><fmt:formatDate value="${post.post_date }" pattern="yyyy/MM/dd" /></td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<tr class="deleted">
+											<td>${post.rnum }</td>
+											<td colspan="3">삭제된 게시글 입니다.</td>
+										</tr>
+									</c:otherwise>
+								</c:choose>
 								</c:forEach>
 							</table>
 
