@@ -6,7 +6,10 @@
 
   <!-- 댓글 정보 조회 -->
   <select id="selectComm" parameterType="int" resultType="commVo">
-  	Select * From comm Where post_id = #{post_id} Order By comm_date desc
+  	Select /*+ index ( comm IDX_COMM_01) */ *
+	From comm
+	Where post_id = #{post_id} 
+	Order By comm_date desc;
   </select>
   
   <!-- 댓글 등록 -->

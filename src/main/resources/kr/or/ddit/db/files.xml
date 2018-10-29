@@ -6,7 +6,9 @@
 
 	<!-- 게시글 아이디로 파일들 조회 -->
 	<select id="selectFiles" parameterType="int" resultType="filesVo">
-		Select * From file_post Where post_id = #{post_id}
+		Select /*+ index ( file_post IDX_FILE_POST_01) */ *
+		From file_post
+		Where post_id = #{post_id}
 	</select>
 
 	<!-- 첨부 파일 등록 -->
